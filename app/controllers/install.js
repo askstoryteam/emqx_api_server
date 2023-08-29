@@ -15,8 +15,8 @@ const process_install =  (req,res) =>
     console.log('gotcha2');
     try 
     {
-        console.log("req.body",req.body);
-        let cmd = req.body.cmd;
+        let cmd = req?.body?.payload?.cmd;
+        console.log("cmd",cmd);
         if(!cmd)
         {
             console.log("cmd is null");
