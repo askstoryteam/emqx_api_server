@@ -11,11 +11,18 @@ const get_data = (req) =>
 }
 const add_gateway = async (req,res) => 
 {
-    const [topic,clientid,payload] = get_data(req);
-    console.log("topic2",topic);
-    console.log("clientid2",clientid);
-    console.log("payload2",payload);
-    res.json("{code:300}");
+    let body = req.body;
+    //console.log("body",body);
+
+    const topic                 = body.topic;
+    const clientid              = body.clientid;
+    const response_topic        = body.pub_props['Response-Topic'];
+    const correlation_data      = body.pub_props['Correlation-Data'];
+
+    console.log("response_topic",response_topic);
+
+
+    res.json("{code:200}");
 }
 
 const add_temp = async (req,res) => 

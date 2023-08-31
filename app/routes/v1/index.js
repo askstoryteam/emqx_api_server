@@ -1,8 +1,8 @@
 const express       = require('express');
-const install       = require('./install');
+const install_db    = require('./install_db');
 
 const router        = express.Router();
 
-router.use('/install',install);
+router.use('/install_db',install_db);
 
 module.exports = router;

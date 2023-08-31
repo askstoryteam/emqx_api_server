@@ -8,6 +8,7 @@ const Auth          = require('./middleware/apikey_check.js')
 require("dotenv").config();
 
 app.use(bodyParser.json());
+//app.use(app.bodyParser());
 app.use(bodyParser.urlencoded ({ extended: false }));
 
 // var corsOptions = {
