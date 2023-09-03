@@ -142,7 +142,7 @@ const publish_topic = async (data) =>
 
     let data = {
   "payload_encoding": "plain",
-  "topic": "s1/1/install_db",
+  "topic": "s1/idfeelme@gmail.com/me",
   "qos": 2,
   "payload": payload,
   "properties": {

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express       = require('express')
 const bodyParser    = require('body-parser')
 const app           = express()
@@ -5,7 +6,6 @@ const routes        = require('./routes/v1')
 const Auth          = require('./middleware/apikey_check.js')
 //const util          = require('./util/util')
 //const cors          = require('cors');
-require("dotenv").config();
 
 app.use(bodyParser.json());
 //app.use(app.bodyParser());

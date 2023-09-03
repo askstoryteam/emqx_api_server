@@ -1,31 +1,56 @@
-function define(name, value) {
-	Object.defineProperty(exports, name, {
-		value:      value,
-		enumerable: true
-	});
+const axios         = require('axios')
+const constants     = require('../config/constants');
+
+
+const publish_topic = async (data) => 
+{
+    try 
+    {
+        let string_data = JSON.stringify(data);
+        let params = 
+        {
+            method: 'POST',
+            auth: { username: process.env.MQTT_API_USERNAME, password: process.env.MQTT_API_PASSWORD },
+            url: `http://${constants.API_SERVER_IP}:18083/api/v5/publish`,
+            headers: { 'Content-Type': 'application/json' },
+            data : string_data
+        };
+        await axios(params);
+    } 
+    catch (err) 
+    {
+        // Handle Error Here
+        console.error(err);
+    }
 }
 
 
+const get_topic_value = (topic,index) => 
+{
+    if(!topic) return '';
 
-//
-// const setDBInfo = () => 
-// {
-//
-// define('DB_PORT'      ,process.env.DB_PORT);
-// define('DB_USER'      ,process.env.DB_USER);
-// define('DB_PASS'      ,process.env.DB_PASS);
-// define('DB_PORT'      ,process.env.DB_PORT);
-//
-//
-//
-// console.log("DB_HOST:", DB_PORT);
-// console.log("DB_USER:", DB_USER);
-// console.log("DB_PASS:", DB_PASS);
-// console.log("DB_PORT:", DB_PORT);
-//
-// }
-//
+    let temp_array = topic.split("/");
+    if(index <= temp_array.length)
+        return temp_array[index];
+
+    return '';
+}
 
 
-//exports.setDBInfo = setDBInfo; 
+const publish_result = async(result) => 
+{
+    payload = JSON.stringify(result.msg);
+    let data = 
+    {
+        "payload_encoding": "plain"
+    ,   "topic": result.response_topic
+    ,   "qos": 2
+    ,   "payload": payload
+    ,   "retain": false
+    }
+    await publish_topic(data);
+}
+
+exports.get_topic_value     = get_topic_value;
+exports.publish_result      = publish_result;
 
