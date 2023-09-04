@@ -7,6 +7,27 @@ const Auth          = require('./middleware/apikey_check.js')
 //const util          = require('./util/util')
 //const cors          = require('cors');
 
+
+
+// Log
+let console_list = ["log", "warn", "error"];
+console_list.forEach(function(fn) {
+
+	var org = console[fn].bind(console);
+
+	console[fn] = function() {
+
+		var now = new Date();
+		var arg = Array.prototype.slice.call(arguments);
+		var tag = '[' + now.toTimeString().slice(0, 8) + '.' + now.getMilliseconds() + ']';
+
+		arg.unshift(tag);
+
+        org.apply(console, arg);
+    };
+});
+
+
 app.use(bodyParser.json());
 //app.use(app.bodyParser());
 app.use(bodyParser.urlencoded ({ extended: false }));

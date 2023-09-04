@@ -53,4 +53,3 @@ const publish_result = async(result) =>
 
 exports.get_topic_value     = get_topic_value;
 exports.publish_result      = publish_result;
-
