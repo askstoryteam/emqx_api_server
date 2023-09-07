@@ -59,4 +59,5 @@ define('DB_CONNECTION_LIMIT',				1);
 define('DB_WAIT_FOR_CONNECTIONS',			true);
 define('DB_DEBUG',							false);
 define('API_SERVER_IP',					    '192.168.0.14');
+//define('API_SERVER_IP',					    '172.30.1.24');
 
